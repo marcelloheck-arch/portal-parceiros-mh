@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Portal de Parceiros · MH</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --marinho:#0E2A3B; --texto:#0E2A3B; --suave:#4A6070; --borda:#D5E2E0; --fundo:#F4F7F8; --branco:#fff;
+  --acento:#0B7A6B; --acento-escuro:#075A4F; --acento-claro:#EEF6F4;
+  --erro:#B23F3C; --erro-claro:#FDECEC; --aviso:#8A5A00; --aviso-claro:#FFF4DD; --cinza:#8A9AA5;
+}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Source Sans 3',sans-serif;background:var(--fundo);color:var(--texto);font-size:16px;line-height:1.45;min-height:100vh}
+h1,h2,h3,.sora{font-family:'Sora',sans-serif;letter-spacing:-.3px}
+button,input,select,textarea{font:inherit;color:inherit}
+a{color:var(--acento)}
+.oculto{display:none!important}
+
+/* topo */
+.topo{background:var(--marinho);color:#fff}
+.topo-in{max-width:960px;margin:0 auto;padding:14px 16px;display:flex;align-items:center;gap:12px}
+.marca{font-family:'Sora',sans-serif;font-weight:700;font-size:15px;letter-spacing:.2px}
+.marca small{display:block;font-family:'Source Sans 3',sans-serif;font-weight:400;font-size:12px;color:#B8C9D3;letter-spacing:0}
+.topo nav{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap}
+.topo nav button{background:none;border:0;color:#DCE7EC;padding:8px 10px;border-radius:8px;cursor:pointer;font-size:14px}
+.topo nav button:hover,.topo nav button.ativo{background:rgba(255,255,255,.1);color:#fff}
+
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}
+
+/* cartões e formulários */
+.cartao{background:var(--branco);border:1px solid var(--borda);border-radius:14px;padding:24px}
+.estreito{max-width:420px;margin:6vh auto 0}
+.estreito .marca-login{text-align:center;margin-bottom:18px}
+.estreito .marca-login b{font-family:'Sora',sans-serif;font-size:20px;display:block}
+.estreito .marca-login span{color:var(--suave);font-size:14px}
+h2{font-size:20px;margin-bottom:6px}
+p.ajuda{color:var(--suave);font-size:14.5px;margin-bottom:18px}
+label{display:block;font-size:13px;font-weight:600;color:var(--suave);margin-bottom:5px}
+.campo{margin-bottom:14px}
+input,select,textarea{width:100%;padding:11px 13px;border:1.5px solid var(--borda);border-radius:10px;background:#fff;font-size:15px}
+textarea{min-height:84px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--acento);box-shadow:0 0 0 3px var(--acento-claro)}
+.grade2{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+.opcional{font-weight:400;color:var(--cinza)}
+.senha{position:relative}
+.senha input{padding-right:72px}
+.senha button{position:absolute;right:6px;top:5px;background:none;border:0;color:var(--acento);font-size:13px;font-weight:600;cursor:pointer;padding:8px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 18px;border-radius:10px;border:0;cursor:pointer;font-weight:600;font-size:15px}
+.btn-p{background:var(--acento);color:#fff}
+.btn-p:hover{background:var(--acento-escuro)}
+.btn-s{background:#fff;border:1.5px solid var(--borda);color:var(--texto)}
+.btn-s:hover{border-color:var(--acento)}
+.btn:disabled{opacity:.6;cursor:default}
+.largo{width:100%}
+.btn-link{background:none;border:0;color:var(--suave);text-decoration:underline;cursor:pointer;font-size:14px;padding:6px}
+.msg{font-size:14px;padding:10px 12px;border-radius:9px;margin-bottom:14px}
+.msg.erro{background:var(--erro-claro);color:var(--erro)}
+.msg.ok{background:var(--acento-claro);color:var(--acento-escuro)}
+.msg.aviso{background:var(--aviso-claro);color:var(--aviso)}
+.rodape{text-align:center;font-size:12.5px;color:var(--cinza);margin-top:18px}
+
+/* termos */
+.termos{max-height:46vh;overflow:auto;border:1px solid var(--borda);border-radius:10px;padding:16px 18px;background:#FBFCFC;font-size:14.5px;margin-bottom:16px}
+.termos h3{font-size:14.5px;margin:14px 0 4px}
+.termos h3:first-child{margin-top:0}
+.termos ol{padding-left:20px}
+.termos li{margin-bottom:3px}
+.aceite{display:flex;gap:10px;align-items:flex-start;margin-bottom:16px;font-size:15px;cursor:pointer}
+.aceite input{width:20px;height:20px;margin-top:2px;flex:none;accent-color:var(--acento)}
+
+/* painel */
+.cabeca{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.cabeca h1{font-size:24px}
+.cabeca p{color:var(--suave)}
+.numeros{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:20px}
+.num{background:#fff;border:1px solid var(--borda);border-radius:12px;padding:16px}
+.num span{display:block;font-size:13.5px;color:var(--suave)}
+.num b{font-family:'Sora',sans-serif;font-size:24px}
+.num.destaque{background:var(--acento-claro);border-color:transparent}
+.num.destaque b{color:var(--acento)}
+.num small{display:block;font-size:12.5px;color:var(--suave);margin-top:2px}
+.lista{display:flex;flex-direction:column;gap:10px}
+.item{background:#fff;border:1px solid var(--borda);border-radius:12px;padding:14px 16px;display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:center;cursor:pointer;text-align:left;width:100%}
+.item:hover{border-color:var(--acento)}
+.item b{font-size:16px}
+.item .meta{grid-column:1;color:var(--suave);font-size:13.5px}
+.selo{font-size:12.5px;font-weight:700;padding:4px 10px;border-radius:999px;white-space:nowrap;grid-row:1/3;grid-column:2}
+.s-andamento{background:#EAF1F6;color:#1F4E6E}
+.s-fechada{background:var(--acento-claro);color:var(--acento-escuro)}
+.s-pago{background:var(--acento);color:#fff}
+.s-perdida{background:#F0F2F3;color:#6B7A84}
+.vazio{text-align:center;padding:36px 16px;color:var(--suave)}
+.vazio b{display:block;font-family:'Sora',sans-serif;color:var(--texto);font-size:17px;margin-bottom:6px}
+.filtros{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.filtros button{border:1.5px solid var(--borda);background:#fff;border-radius:999px;padding:6px 12px;font-size:13.5px;cursor:pointer}
+.filtros button.ativo{border-color:var(--acento);background:var(--acento-claro);color:var(--acento-escuro);font-weight:600}
+
+/* detalhe */
+.fundo-modal{position:fixed;inset:0;background:rgba(14,42,59,.45);display:flex;align-items:flex-start;justify-content:center;padding:5vh 16px;overflow:auto;z-index:10}
+.modal{background:#fff;border-radius:14px;max-width:560px;width:100%;padding:22px}
+.modal-topo{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:14px}
+.modal-topo h2{margin:0}
+.fechar{background:none;border:0;font-size:26px;line-height:1;cursor:pointer;color:var(--suave);padding:0 4px}
+.trilha{display:flex;gap:4px;margin:6px 0 4px}
+.trilha i{flex:1;height:6px;border-radius:3px;background:#E3EBEA}
+.trilha i.feito{background:var(--acento)}
+.trilha-rot{display:flex;justify-content:space-between;font-size:12px;color:var(--suave);margin-bottom:16px}
+dl.dados{display:grid;grid-template-columns:140px 1fr;gap:6px 12px;font-size:14.5px;margin-bottom:16px}
+dl.dados dt{color:var(--suave)}
+.hist{border-top:1px solid var(--borda);padding-top:12px}
+.hist h3{font-size:14.5px;margin-bottom:8px}
+.hist li{list-style:none;font-size:14px;padding:6px 0 6px 16px;border-left:2px solid var(--borda);position:relative}
+.hist li::before{content:"";position:absolute;left:-5px;top:12px;width:8px;height:8px;border-radius:4px;background:var(--acento)}
+.hist time{color:var(--suave);font-size:12.5px;display:block}
+
+/* admin */
+body.admin main, body.admin .topo-in{max-width:1480px}
+details.corrigir summary{cursor:pointer;color:var(--suave);font-size:14px;padding:4px 0 10px}
+.ferramentas{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.ferramentas input[type=search]{flex:1 1 260px;width:auto}
+.ferramentas select{width:auto;flex:0 1 220px}
+.quadro{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(185px,1fr);gap:12px;overflow-x:auto;padding-bottom:10px;align-items:start}
+.coluna{background:#E9EFEF;border-radius:12px;padding:10px;min-height:120px}
+.coluna h3{font-size:13.5px;display:flex;justify-content:space-between;align-items:center;padding:2px 4px 10px}
+.coluna h3 span{background:#fff;border-radius:999px;padding:1px 9px;font-size:12.5px;color:var(--suave)}
+.coluna.c-pagar{background:#DDEFEA}
+.cartao-ind{display:block;width:100%;text-align:left;background:#fff;border:1px solid var(--borda);border-radius:10px;padding:10px 12px;margin-bottom:8px;cursor:pointer}
+.cartao-ind:hover{border-color:var(--acento)}
+.cartao-ind b{display:block;font-size:14.5px;line-height:1.3}
+.cartao-ind small{display:block;color:var(--suave);font-size:12.5px;margin-top:3px}
+.cartao-ind .pix{margin-top:6px;font-size:12.5px;font-weight:700;color:var(--acento-escuro)}
+.cartao-ind .pix.atrasado{color:var(--erro)}
+.coluna .nada{font-size:12.5px;color:var(--cinza);padding:4px}
+.acoes{border-top:1px solid var(--borda);padding-top:14px;margin-bottom:16px}
+.acoes h3{font-size:14.5px;margin-bottom:10px}
+.caixa-pix{background:var(--acento-claro);border-radius:10px;padding:14px;margin-bottom:16px}
+.caixa-pix h3{font-size:14.5px;margin-bottom:8px}
+.caixa-pix .chave{font-family:ui-monospace,Menlo,monospace;font-size:14.5px;background:#fff;border-radius:8px;padding:8px 10px;margin:6px 0 10px;word-break:break-all;display:flex;justify-content:space-between;gap:8px;align-items:center}
+.btn-mini{background:none;border:1.5px solid var(--borda);border-radius:8px;padding:4px 10px;font-size:13px;cursor:pointer;white-space:nowrap}
+.btn-mini:hover{border-color:var(--acento)}
+.tabela{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--borda);border-radius:12px;overflow:hidden;font-size:14.5px}
+.tabela th{text-align:left;font-size:12.5px;color:var(--suave);font-weight:600;padding:10px 12px;border-bottom:1px solid var(--borda);background:#FBFCFC}
+.tabela td{padding:10px 12px;border-bottom:1px solid #EDF2F1;vertical-align:top}
+.tabela tr:last-child td{border-bottom:0}
+.tabela small{color:var(--suave);display:block}
+.inativo td{opacity:.55}
+.credenciais{background:var(--acento-claro);border-radius:10px;padding:14px;margin:12px 0}
+.credenciais pre{white-space:pre-wrap;font-family:inherit;font-size:14.5px;background:#fff;border-radius:8px;padding:10px 12px;margin:8px 0}
+
+.carregando{color:var(--suave);padding:24px 0;text-align:center}
+
+@media (max-width:820px){
+  .tabela thead{display:none}
+  .tabela,.tabela tbody,.tabela tr,.tabela td{display:block;width:100%}
+  .tabela tr{border-bottom:1px solid var(--borda);padding:6px 0}
+  .tabela td{border:0;padding:4px 12px}
+}
+@media (max-width:720px){
+  .quadro{grid-auto-columns:82%}
+  .numeros{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .grade2{grid-template-columns:1fr}
+  dl.dados{grid-template-columns:1fr}
+  dl.dados dt{margin-top:6px}
+  .topo-in{flex-wrap:wrap;padding-bottom:8px}
+  .topo nav{margin-left:-8px;width:calc(100% + 8px);flex-wrap:nowrap;overflow-x:auto;gap:0}
+  .topo nav button{white-space:nowrap;padding:8px;font-size:13.5px}
+  .cabeca h1{font-size:22px}
+}
+</style>
+</head>
+<body>
+
+<header class="topo oculto" id="topo">
+  <div class="topo-in">
+    <div class="marca">Portal de Parceiros<small>MH Soluções para Atendimento</small></div>
+    <nav id="nav-parceiro">
+      <button data-ir="painel">Minhas indicações</button>
+      <button data-ir="nova">Nova indicação</button>
+      <button data-ir="dados">Meus dados</button>
+      <button class="b-sair">Sair</button>
+    </nav>
+    <nav id="nav-admin" class="oculto">
+      <button data-ir="quadro">Indicações</button>
+      <button data-ir="parceiros">Parceiros</button>
+      <button id="b-minha-senha">Minha senha</button>
+      <button class="b-sair">Sair</button>
+    </nav>
+  </div>
+</header>
+
+<main id="app">
+
+  <!-- LOGIN -->
+  <section class="tela" id="tela-login">
+    <div class="estreito">
+      <div class="marca-login"><b>Portal de Parceiros</b><span>MH Soluções para Atendimento</span></div>
+      <form class="cartao" id="form-login" autocomplete="on">
+        <div class="msg erro oculto" id="msg-login"></div>
+        <div class="campo"><label for="l-email">E-mail</label>
+          <input type="email" id="l-email" name="username" autocomplete="username" required></div>
+        <div class="campo"><label for="l-senha">Senha</label>
+          <div class="senha"><input type="password" id="l-senha" name="password" autocomplete="current-password" required>
+          <button type="button" data-ver="l-senha">mostrar</button></div></div>
+        <button class="btn btn-p largo" id="b-login">Entrar</button>
+      </form>
+      <p class="rodape">Acesso por convite. Esqueceu a senha? Fale com o Marcelo pelo WhatsApp (48) 99931-4665.</p>
+    </div>
+  </section>
+
+  <!-- TROCAR SENHA -->
+  <section class="tela" id="tela-senha">
+    <div class="estreito">
+      <form class="cartao" id="form-senha" autocomplete="off">
+        <h2>Crie sua senha</h2>
+        <p class="ajuda">Escolha uma senha só sua, com pelo menos 8 caracteres. Ninguém mais vai ver.</p>
+        <div class="msg erro oculto" id="msg-senha"></div>
+        <div class="campo"><label for="s-atual">Senha que você recebeu</label>
+          <div class="senha"><input type="password" id="s-atual" autocomplete="current-password" required>
+          <button type="button" data-ver="s-atual">mostrar</button></div></div>
+        <div class="campo"><label for="s-nova">Senha nova</label>
+          <div class="senha"><input type="password" id="s-nova" autocomplete="new-password" minlength="8" required>
+          <button type="button" data-ver="s-nova">mostrar</button></div></div>
+        <div class="campo"><label for="s-nova2">Repita a senha nova</label>
+          <input type="password" id="s-nova2" autocomplete="new-password" minlength="8" required></div>
+        <button class="btn btn-p largo" id="b-senha">Salvar senha</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- TERMOS -->
+  <section class="tela" id="tela-termos">
+    <div class="cartao" style="max-width:720px;margin:0 auto">
+      <h2>Termos do Programa de Parceria</h2>
+      <p class="ajuda">Leia antes de começar. Você só precisa aceitar uma vez.</p>
+      <div class="termos" id="termos-texto"></div>
+      <div class="msg erro oculto" id="msg-termos"></div>
+      <label class="aceite"><input type="checkbox" id="t-aceite"> <span>Li e aceito os termos do Programa de Parceria.</span></label>
+      <button class="btn btn-p" id="b-termos" disabled>Aceitar e continuar</button>
+      <button class="btn-link" id="b-termos-sair">Sair</button>
+    </div>
+  </section>
+
+  <!-- PAINEL -->
+  <section class="tela" id="tela-painel">
+    <div class="cabeca">
+      <div><h1 id="p-ola">Olá</h1><p>Acompanhe cada empresa que você indicou.</p></div>
+      <button class="btn btn-p" data-ir="nova">+ Nova indicação</button>
+    </div>
+    <div class="msg ok oculto" id="msg-painel"></div>
+    <div class="msg aviso oculto" id="aviso-pix">Cadastre sua chave Pix para receber os bônus. <a href="#dados" data-ir="dados">Cadastrar agora</a></div>
+    <div class="numeros">
+      <div class="num"><span>Indicações</span><b id="n-total">–</b><small id="n-andamento"></small></div>
+      <div class="num"><span>Fechadas</span><b id="n-fechadas">–</b></div>
+      <div class="num destaque"><span>A receber</span><b id="n-areceber">–</b><small id="n-proximo"></small></div>
+      <div class="num"><span>Recebido</span><b id="n-recebido">–</b></div>
+    </div>
+    <div class="filtros" id="filtros">
+      <button data-f="todas" class="ativo">Todas</button>
+      <button data-f="andamento">Em andamento</button>
+      <button data-f="fechadas">Fechadas</button>
+      <button data-f="perdida">Não fecharam</button>
+    </div>
+    <div class="lista" id="lista"><div class="carregando">Carregando…</div></div>
+  </section>
+
+  <!-- NOVA INDICAÇÃO -->
+  <section class="tela" id="tela-nova">
+    <div class="cartao" style="max-width:640px;margin:0 auto">
+      <h2>Nova indicação</h2>
+      <p class="ajuda">Informe a empresa e quem decide lá. Eu faço o contato, a apresentação e a negociação. Indique só quem aceitou ser contatado.</p>
+      <form id="form-nova" autocomplete="off">
+        <div class="msg erro oculto" id="msg-nova"></div>
+        <div class="campo"><label for="n-empresa">Nome da empresa</label><input id="n-empresa" maxlength="150" required></div>
+        <div class="grade2">
+          <div class="campo"><label for="n-segmento">Segmento <span class="opcional">(opcional)</span></label>
+            <input id="n-segmento" maxlength="80" list="segmentos" placeholder="Ex.: clínica, loja, escritório">
+            <datalist id="segmentos"><option>Clínica</option><option>Consultório</option><option>Laboratório</option><option>Escritório</option><option>Loja</option><option>Prestador de serviço</option></datalist></div>
+          <div class="campo"><label for="n-cidade">Cidade <span class="opcional">(opcional)</span></label><input id="n-cidade" maxlength="80"></div>
+        </div>
+        <div class="campo"><label for="n-contato">Nome de quem decide</label><input id="n-contato" maxlength="120" required></div>
+        <div class="grade2">
+          <div class="campo"><label for="n-telefone">WhatsApp de quem decide</label><input id="n-telefone" inputmode="tel" placeholder="(48) 99999-9999" maxlength="30" required></div>
+          <div class="campo"><label for="n-email">E-mail <span class="opcional">(opcional)</span></label><input id="n-email" type="email" maxlength="150"></div>
+        </div>
+        <div class="campo"><label for="n-obs">Observação <span class="opcional">(opcional)</span></label>
+          <textarea id="n-obs" maxlength="1000" placeholder="Como você conhece a empresa, melhor horário para falar, o que eles precisam…"></textarea></div>
+        <button class="btn btn-p" id="b-nova">Enviar indicação</button>
+        <button type="button" class="btn-link" data-ir="painel">Cancelar</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- MEUS DADOS -->
+  <section class="tela" id="tela-dados">
+    <div class="cartao" style="max-width:560px;margin:0 auto">
+      <h2>Meus dados para receber</h2>
+      <p class="ajuda">O bônus de R$ 180 por contrato fechado é pago via Pix, no 1º dia útil após o primeiro pagamento do cliente. A chave Pix precisa estar no mesmo CPF ou CNPJ informado abaixo.</p>
+      <form id="form-dados" autocomplete="off">
+        <div class="msg oculto" id="msg-dados"></div>
+        <div class="campo"><label>Nome</label><input id="d-nome" disabled></div>
+        <div class="campo"><label for="d-documento">CPF ou CNPJ</label><input id="d-documento" inputmode="numeric" maxlength="18" required></div>
+        <div class="grade2">
+          <div class="campo"><label for="d-tipo">Tipo da chave Pix</label>
+            <select id="d-tipo" required>
+              <option value="">Escolha…</option><option value="cpf">CPF</option><option value="cnpj">CNPJ</option>
+              <option value="email">E-mail</option><option value="telefone">Telefone</option><option value="aleatoria">Chave aleatória</option>
+            </select></div>
+          <div class="campo"><label for="d-chave">Chave Pix</label><input id="d-chave" maxlength="120" required></div>
+        </div>
+        <div class="campo"><label for="d-telefone">Seu WhatsApp <span class="opcional">(opcional)</span></label><input id="d-telefone" inputmode="tel" maxlength="30"></div>
+        <button class="btn btn-p" id="b-dados">Salvar</button>
+      </form>
+      <div style="border-top:1px solid var(--borda);margin-top:22px;padding-top:16px">
+        <button class="btn btn-s" id="b-trocar-senha">Trocar minha senha</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADMIN: QUADRO POR ETAPA -->
+  <section class="tela" id="tela-quadro">
+    <div class="cabeca">
+      <div><h1>Indicações</h1><p>Clique num cartão para ver os detalhes, mudar a etapa ou registrar o Pix.</p></div>
+    </div>
+    <div class="numeros">
+      <div class="num"><span>Em negociação</span><b id="a-aberto">–</b></div>
+      <div class="num"><span>Fechadas (aguardando 1º pagamento)</span><b id="a-fechadas">–</b></div>
+      <div class="num destaque"><span>Pix a pagar</span><b id="a-pagar">–</b><small id="a-pagar-info"></small></div>
+      <div class="num"><span>Bônus pagos</span><b id="a-pago">–</b><small id="a-pago-info"></small></div>
+    </div>
+    <div class="ferramentas">
+      <input id="q-busca" type="search" placeholder="Buscar empresa, contato ou parceiro">
+      <select id="q-parceiro"><option value="">Todos os parceiros</option></select>
+      <label class="aceite" style="margin:0"><input type="checkbox" id="q-perdidas"> <span>Mostrar não fechadas</span></label>
+    </div>
+    <div class="msg erro oculto" id="msg-quadro"></div>
+    <div class="quadro" id="quadro"><div class="carregando">Carregando…</div></div>
+  </section>
+
+  <!-- ADMIN: PARCEIROS -->
+  <section class="tela" id="tela-parceiros">
+    <div class="cabeca">
+      <div><h1>Parceiros</h1><p>Só entra quem você convidar. A senha temporária é trocada no primeiro acesso.</p></div>
+      <button class="btn btn-p" id="b-convidar">+ Convidar parceiro</button>
+    </div>
+    <div class="cartao oculto" id="convite" style="margin-bottom:18px">
+      <h2>Convidar parceiro</h2>
+      <form id="form-convite" autocomplete="off">
+        <div class="msg erro oculto" id="msg-convite"></div>
+        <div class="grade2">
+          <div class="campo"><label for="c-nome">Nome</label><input id="c-nome" maxlength="120" required></div>
+          <div class="campo"><label for="c-email">E-mail (será o login)</label><input id="c-email" type="email" maxlength="150" required></div>
+        </div>
+        <div class="campo"><label for="c-telefone">WhatsApp <span class="opcional">(opcional)</span></label><input id="c-telefone" inputmode="tel" maxlength="30"></div>
+        <button class="btn btn-p" id="b-criar">Criar acesso</button>
+        <button type="button" class="btn-link" id="b-convite-cancelar">Cancelar</button>
+      </form>
+    </div>
+    <div class="msg erro oculto" id="msg-parceiros"></div>
+    <div id="lista-parceiros"><div class="carregando">Carregando…</div></div>
+  </section>
+</main>
+
+<div class="fundo-modal oculto" id="modal" role="dialog" aria-modal="true" aria-labelledby="m-titulo">
+  <div class="modal">
+    <div class="modal-topo"><h2 id="m-titulo">–</h2><button class="fechar" id="m-fechar" aria-label="Fechar">×</button></div>
+    <div id="m-corpo"></div>
+  </div>
+</div>
+
+<script>
+/* ===== CONFIGURAÇÃO ===== */
+const API_BASE = (location.hostname === 'localhost' || location.hostname === '127.0.0.1')
+  ? location.origin + '/webhook'                                   // só para testes locais
+  : 'https://coldbloodedchameleon-n8n.cloudfy.live/webhook';
+const API_AUTH = API_BASE + '/api-parceiros-auth';
+const API      = API_BASE + '/api-parceiros';
+const VERSAO_TERMOS = '1.1';
+const CHAVE_SESSAO = 'mh_parceiros_sessao';
+
+/* ===== TEXTO DOS TERMOS (v1.1) ===== */
+const TERMOS_HTML = `
+<h3>1. Partes</h3>
+<p><b>MH Soluções para Atendimento</b>, CNPJ 68.796.612/0001-76, representada por Marcelo Heck ("MH"), e a pessoa física ou jurídica cadastrada no Portal de Parceiros ("Parceiro").</p>
+<h3>2. Objeto</h3>
+<p>O Programa de Parceria remunera o Parceiro por indicar empresas que contratem as soluções da MH: agente de atendimento com inteligência artificial para WhatsApp, lembretes automáticos e serviços relacionados, para qualquer tipo de negócio.</p>
+<h3>3. Participação</h3>
+<ol><li>A participação é gratuita, sem meta, sem mensalidade e sem exclusividade.</li>
+<li>O cadastro é feito por convite da MH. O acesso ao Portal é pessoal e intransferível.</li>
+<li>O Parceiro atua de forma independente. Estes termos não criam vínculo empregatício, societário ou de representação comercial entre as partes.</li></ol>
+<h3>4. Como indicar</h3>
+<ol><li>O Parceiro cadastra a indicação no Portal com: nome da empresa, segmento, cidade e contato de quem decide (nome, telefone e, se houver, e-mail).</li>
+<li>O Parceiro só deve indicar empresas com as quais tenha relacionamento e que aceitem ser contatadas pela MH.</li>
+<li>A apresentação comercial, a negociação, a proposta e a implantação são feitas pela MH. O Parceiro não precisa vender.</li></ol>
+<h3>5. Prioridade da indicação</h3>
+<ol><li>Cada empresa conta uma única vez, para o Parceiro que a cadastrou primeiro no Portal (data e hora do registro).</li>
+<li>Se a empresa já tiver sido indicada, ou já estiver em negociação ou for cliente da MH, o Portal informa "empresa já indicada", sem identificar quem indicou.</li>
+<li>A indicação vale por 6 meses a partir do cadastro. Se a empresa fechar contrato depois desse prazo, a MH avaliará o caso.</li>
+<li>Se a indicação for encerrada como não fechada, a empresa só pode ser indicada novamente 30 dias depois do encerramento.</li></ol>
+<h3>6. Remuneração</h3>
+<ol><li>O Parceiro recebe <b>R$ 180,00 (cento e oitenta reais) por contrato fechado</b>, em pagamento único, qualquer que seja o plano ou o valor da mensalidade contratada.</li>
+<li>Considera-se fechado o contrato assinado pelo cliente <b>e</b> com a primeira mensalidade paga.</li>
+<li>O pagamento é feito <b>via Pix, no primeiro dia útil após o primeiro pagamento do cliente</b>, na chave Pix cadastrada pelo Parceiro no Portal.</li>
+<li>Não há limite de indicações nem de remuneração por Parceiro.</li>
+<li>Não há remuneração para indicações que não resultem em contrato fechado, nem para contratos cancelados antes do primeiro pagamento.</li>
+<li>Uma vez pago, o valor não é devolvido, mesmo que o cliente cancele o contrato depois.</li></ol>
+<h3>7. Impostos e dados para pagamento</h3>
+<ol><li>O Parceiro é responsável por declarar os valores recebidos, conforme a legislação aplicável.</li>
+<li>Para receber, o Parceiro informa nome completo ou razão social, CPF ou CNPJ e chave Pix de mesma titularidade.</li></ol>
+<h3>8. Conduta</h3>
+<p>O Parceiro se compromete a:</p>
+<ol><li>não prometer preços, prazos, descontos ou funcionalidades em nome da MH;</li>
+<li>não enviar mensagens em massa, spam ou contatos não autorizados em nome da MH;</li>
+<li>não usar o nome ou o material da MH de forma enganosa, nem se apresentar como funcionário da MH;</li>
+<li>usar apenas o material de divulgação fornecido pela MH, ou outro aprovado por ela.</li></ol>
+<p>O descumprimento destas regras permite à MH desligar o Parceiro do programa e cancelar indicações em aberto.</p>
+<h3>9. Dados pessoais</h3>
+<ol><li>Os dados de contato das empresas indicadas são usados pela MH só para o contato comercial relacionado à indicação, conforme a Lei Geral de Proteção de Dados (Lei 13.709/2018).</li>
+<li>Os dados do Parceiro são usados para o cadastro, o acompanhamento das indicações e os pagamentos.</li>
+<li>O Parceiro vê no Portal apenas as próprias indicações.</li></ol>
+<h3>10. Acompanhamento</h3>
+<p>O Parceiro acompanha no Portal a etapa de cada indicação: indicada, em contato, demonstração, proposta, fechada, cliente pagou, bônus pago ou não fechada.</p>
+<h3>11. Alterações e encerramento</h3>
+<ol><li>A MH pode alterar estes termos ou encerrar o programa com aviso de 30 dias no Portal ou por e-mail.</li>
+<li>Indicações cadastradas antes da alteração seguem as regras vigentes na data do cadastro.</li>
+<li>O Parceiro pode sair do programa a qualquer momento. Bônus de contratos já fechados continuam devidos.</li></ol>
+<h3>12. Foro</h3>
+<p>Fica eleito o foro da comarca de São José/SC para resolver questões relativas a estes termos.</p>
+<p style="margin-top:12px;color:var(--suave)">Ao aceitar, o Portal registra data, hora e endereço IP do aceite. Versão 1.1.</p>`;
+
+/* ===== RÓTULOS ===== */
+const ETAPAS = ['indicada','em_contato','demonstracao','proposta','fechada','cliente_pagou','bonus_pago'];
+const ROTULO = { indicada:'Indicada', em_contato:'Em contato', demonstracao:'Demonstração', proposta:'Proposta',
+  fechada:'Fechada', cliente_pagou:'Cliente pagou', bonus_pago:'Bônus pago', perdida:'Não fechou' };
+const ERROS = {
+  credenciais:'E-mail ou senha incorretos.', nao_autorizado:'Sua sessão expirou. Entre de novo.',
+  senha_curta:'A senha nova precisa ter pelo menos 8 caracteres.', senha_igual:'A senha nova precisa ser diferente da atual.',
+  senha_atual_incorreta:'A senha atual está incorreta.', versao_termos:'Os termos foram atualizados. Recarregue a página.',
+  empresa_ja_indicada:'Essa empresa já foi indicada. Cada empresa conta uma vez, para quem indicou primeiro.',
+  empresa_obrigatoria:'Informe o nome da empresa.', contato_obrigatorio:'Informe o nome de quem decide.',
+  telefone_invalido:'Confira o WhatsApp: use DDD + número.', email_invalido:'Confira o e-mail do contato.',
+  documento_invalido:'Confira o CPF (11 dígitos) ou CNPJ (14 dígitos).', pix_invalido:'Confira o tipo e a chave Pix.',
+  nao_encontrada:'Indicação não encontrada.', erro_interno:'Não deu certo agora. Tente de novo em instantes.',
+  rede:'Sem conexão com o servidor. Confira sua internet e tente de novo.'
+};
+const msgErro = e => ERROS[e] || ERROS.erro_interno;
+
+/* ===== UTILIDADES ===== */
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const brl = v => Number(v || 0).toLocaleString('pt-BR', { style:'currency', currency:'BRL' });
+const dataBR = d => { if (!d) return ''; const [a,m,dia] = String(d).slice(0,10).split('-'); return `${dia}/${m}/${a}`; };
+const dataHoraBR = t => t ? new Date(t).toLocaleString('pt-BR', { day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit' }) : '';
+const digitos = s => String(s || '').replace(/\D/g, '');
+function telBR(s) {
+  let d = digitos(s); if (d.length > 11 && d.startsWith('55')) d = d.slice(2);
+  if (d.length === 11) return `(${d.slice(0,2)}) ${d.slice(2,7)}-${d.slice(7)}`;
+  if (d.length === 10) return `(${d.slice(0,2)}) ${d.slice(2,6)}-${d.slice(6)}`;
+  return s || '';
+}
+function mostrarMsg(id, texto, tipo = 'erro') {
+  const el = $(id); if (!texto) { el.classList.add('oculto'); return; }
+  el.className = 'msg ' + tipo; el.textContent = texto;
+}
+function ocupado(btn, sim, texto) {
+  if (sim) { btn.dataset.txt = btn.textContent; btn.textContent = texto || 'Aguarde…'; btn.disabled = true; }
+  else { btn.textContent = btn.dataset.txt || btn.textContent; btn.disabled = false; }
+}
+
+/* ===== SESSÃO E API ===== */
+let sessao = lerSessao();
+function lerSessao() { try { return JSON.parse(localStorage.getItem(CHAVE_SESSAO) || 'null'); } catch (e) { return null; } }
+function gravarSessao(s) { sessao = s; try { localStorage.setItem(CHAVE_SESSAO, JSON.stringify(s)); } catch (e) {} }
+function limparSessao() { sessao = null; try { localStorage.removeItem(CHAVE_SESSAO); } catch (e) {} }
+
+async function chamar(url, corpo) {
+  try {
+    const res = await fetch(url, { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify(corpo) });
+    const j = await res.json().catch(() => ({ ok:false, erro:'erro_interno' }));
+    return j && typeof j === 'object' ? j : { ok:false, erro:'erro_interno' };
+  } catch (e) { return { ok:false, erro:'rede' }; }
+}
+async function api(acao, dados = {}) {
+  const r = await chamar(API, Object.assign({ acao, token: sessao && sessao.token }, dados));
+  if (!r.ok && ['nao_autorizado','trocar_senha','termos_pendentes'].includes(r.erro)) { await decidirTela(r.erro); }
+  return r;
+}
+
+/* ===== NAVEGAÇÃO ===== */
+const TELAS_PARCEIRO = ['painel','nova','dados'], TELAS_ADMIN = ['quadro','parceiros'];
+const ehAdmin = () => !!(sessao && sessao.usuario && sessao.usuario.perfil === 'admin');
+function mostrar(tela) {
+  document.querySelectorAll('.tela').forEach(t => t.classList.toggle('oculto', t.id !== 'tela-' + tela));
+  const app = TELAS_PARCEIRO.includes(tela) || TELAS_ADMIN.includes(tela);
+  $('topo').classList.toggle('oculto', !app);
+  $('nav-parceiro').classList.toggle('oculto', ehAdmin());
+  $('nav-admin').classList.toggle('oculto', !ehAdmin());
+  document.body.classList.toggle('admin', ehAdmin() && app);
+  document.querySelectorAll('.topo nav [data-ir]').forEach(b => b.classList.toggle('ativo', b.dataset.ir === tela));
+  window.scrollTo(0, 0);
+}
+function ir(tela) {
+  const telas = ehAdmin() ? TELAS_ADMIN : TELAS_PARCEIRO;
+  if (!telas.includes(tela)) tela = telas[0];
+  if (location.hash !== '#' + tela) history.replaceState(null, '', '#' + tela);
+  mostrar(tela);
+  if (tela === 'painel') carregarPainel();
+  if (tela === 'dados') preencherDados();
+  if (tela === 'nova') { mostrarMsg('msg-nova'); setTimeout(() => $('n-empresa').focus(), 50); }
+  if (tela === 'quadro') carregarQuadro();
+  if (tela === 'parceiros') carregarParceiros();
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-ir]'); if (!b) return;
+  e.preventDefault(); ir(b.dataset.ir);
+});
+window.addEventListener('hashchange', () => { if (sessao && sessao.pronto) ir(location.hash.slice(1)); });
+
+/* Decide para onde levar a pessoa conforme o estado da sessão */
+async function decidirTela(erroForcado) {
+  if (!sessao || !sessao.token || erroForcado === 'nao_autorizado') {
+    limparSessao(); mostrar('login');
+    if (erroForcado === 'nao_autorizado') mostrarMsg('msg-login', ERROS.nao_autorizado);
+    return;
+  }
+  const r = await chamar(API_AUTH, { acao:'me', token: sessao.token });
+  if (!r.ok) {
+    if (r.erro === 'rede') { mostrar('login'); mostrarMsg('msg-login', ERROS.rede); return; }
+    limparSessao(); mostrar('login'); if (r.erro === 'nao_autorizado') mostrarMsg('msg-login', ERROS.nao_autorizado); return;
+  }
+  sessao.usuario = r.usuario; sessao.pronto = false; gravarSessao(sessao);
+  if (r.trocar_senha) { abrirTrocaSenha(true); return; }
+  if (r.usuario.perfil !== 'admin' && r.termos_pendentes) { mostrar('termos'); return; }
+  sessao.pronto = true; gravarSessao(sessao);
+  ir(location.hash.slice(1));
+}
+
+/* ===== LOGIN ===== */
+$('form-login').addEventListener('submit', async e => {
+  e.preventDefault(); mostrarMsg('msg-login');
+  const b = $('b-login'); ocupado(b, true, 'Entrando…');
+  const r = await chamar(API_AUTH, { acao:'login', email: $('l-email').value.trim(), senha: $('l-senha').value });
+  ocupado(b, false);
+  if (!r.ok) {
+    mostrarMsg('msg-login', r.erro === 'bloqueado'
+      ? `Muitas tentativas. Tente de novo em ${r.minutos || 15} minuto(s).` : msgErro(r.erro));
+    return;
+  }
+  $('l-senha').value = '';
+  gravarSessao({ token: r.token, usuario: r.usuario });
+  decidirTela();
+});
+document.querySelectorAll('[data-ver]').forEach(b => b.addEventListener('click', () => {
+  const i = $(b.dataset.ver); const ver = i.type === 'password'; i.type = ver ? 'text' : 'password'; b.textContent = ver ? 'ocultar' : 'mostrar';
+}));
+
+/* ===== TROCAR SENHA ===== */
+let trocaObrigatoria = false;
+function abrirTrocaSenha(obrigatoria) {
+  trocaObrigatoria = obrigatoria;
+  const f = $('form-senha'); f.reset(); mostrarMsg('msg-senha');
+  f.querySelector('h2').textContent = obrigatoria ? 'Crie sua senha' : 'Trocar minha senha';
+  f.querySelector('label[for=s-atual]').textContent = obrigatoria ? 'Senha que você recebeu' : 'Senha atual';
+  let voltar = $('b-senha-voltar');
+  if (!voltar) { voltar = document.createElement('button'); voltar.type = 'button'; voltar.className = 'btn-link'; voltar.id = 'b-senha-voltar'; f.appendChild(voltar); }
+  voltar.textContent = obrigatoria ? 'Sair' : 'Voltar';
+  voltar.onclick = () => obrigatoria ? sair() : ir(ehAdmin() ? 'quadro' : 'dados');
+  mostrar('senha');
+}
+$('form-senha').addEventListener('submit', async e => {
+  e.preventDefault(); mostrarMsg('msg-senha');
+  if ($('s-nova').value !== $('s-nova2').value) { mostrarMsg('msg-senha', 'As duas senhas novas não são iguais.'); return; }
+  const b = $('b-senha'); ocupado(b, true, 'Salvando…');
+  const r = await chamar(API_AUTH, { acao:'trocar_senha', token: sessao.token, senha_atual: $('s-atual').value, senha_nova: $('s-nova').value });
+  ocupado(b, false);
+  if (!r.ok) { if (r.erro === 'nao_autorizado') return decidirTela('nao_autorizado'); mostrarMsg('msg-senha', msgErro(r.erro)); return; }
+  $('form-senha').reset();
+  if (trocaObrigatoria) decidirTela();
+  else if (ehAdmin()) { ir('quadro'); alert('Senha trocada.'); }
+  else { ir('dados'); mostrarMsg('msg-dados', 'Senha trocada.', 'ok'); }
+});
+$('b-trocar-senha').addEventListener('click', () => abrirTrocaSenha(false));
+$('b-minha-senha').addEventListener('click', () => abrirTrocaSenha(false));
+
+/* ===== TERMOS ===== */
+$('termos-texto').innerHTML = TERMOS_HTML;
+$('t-aceite').addEventListener('change', e => { $('b-termos').disabled = !e.target.checked; });
+$('b-termos').addEventListener('click', async () => {
+  const b = $('b-termos'); ocupado(b, true, 'Registrando…');
+  const r = await chamar(API_AUTH, { acao:'aceitar_termos', token: sessao.token, versao: VERSAO_TERMOS });
+  ocupado(b, false); b.disabled = !$('t-aceite').checked;
+  if (!r.ok) { if (r.erro === 'nao_autorizado') return decidirTela('nao_autorizado'); mostrarMsg('msg-termos', msgErro(r.erro)); return; }
+  decidirTela();
+});
+
+/* ===== SAIR ===== */
+async function sair() {
+  const t = sessao && sessao.token; limparSessao(); mostrar('login');
+  if (t) chamar(API_AUTH, { acao:'logout', token: t });
+}
+$('b-termos-sair').addEventListener('click', sair);
+document.querySelectorAll('.b-sair').forEach(b => b.addEventListener('click', sair));
+
+/* ===== PAINEL ===== */
+let indicacoes = [], filtro = 'todas';
+function classeSelo(et) {
+  if (et === 'bonus_pago') return 's-pago';
+  if (et === 'fechada' || et === 'cliente_pagou') return 's-fechada';
+  if (et === 'perdida') return 's-perdida';
+  return 's-andamento';
+}
+function grupo(et) {
+  if (et === 'perdida') return 'perdida';
+  if (['fechada','cliente_pagou','bonus_pago'].includes(et)) return 'fechadas';
+  return 'andamento';
+}
+async function carregarPainel() {
+  $('p-ola').textContent = 'Olá, ' + ((sessao.usuario && sessao.usuario.nome) || '').split(' ')[0];
+  $('aviso-pix').classList.toggle('oculto', !!(sessao.usuario && sessao.usuario.pix_cadastrado));
+  const [rs, rl] = await Promise.all([api('resumo'), api('minhas_indicacoes')]);
+  if (rs.ok) {
+    const s = rs.resumo || {};
+    sessao.usuario = rs.usuario || sessao.usuario; gravarSessao(sessao);
+    $('aviso-pix').classList.toggle('oculto', !!sessao.usuario.pix_cadastrado);
+    $('n-total').textContent = s.total ?? 0;
+    $('n-andamento').textContent = s.em_andamento ? `${s.em_andamento} em andamento` : '';
+    $('n-fechadas').textContent = s.fechadas ?? 0;
+    $('n-areceber').textContent = brl(s.a_receber);
+    $('n-proximo').textContent = s.proximo_pix ? `Próximo Pix: ${dataBR(s.proximo_pix)}` : '';
+    $('n-recebido').textContent = brl(s.recebido);
+  }
+  if (!rl.ok) { $('lista').innerHTML = `<div class="msg erro">${esc(msgErro(rl.erro))}</div>`; return; }
+  indicacoes = rl.indicacoes || [];
+  desenharLista();
+}
+function desenharLista() {
+  const itens = indicacoes.filter(i => filtro === 'todas' || grupo(i.etapa) === filtro);
+  if (!indicacoes.length) {
+    $('lista').innerHTML = `<div class="cartao vazio"><b>Você ainda não indicou ninguém</b>Conhece um negócio que atende clientes pelo WhatsApp? Indique e receba R$ 180 quando ele fechar.<br><br><button class="btn btn-p" data-ir="nova">Fazer minha primeira indicação</button></div>`;
+    return;
+  }
+  if (!itens.length) { $('lista').innerHTML = `<div class="vazio">Nenhuma indicação neste filtro.</div>`; return; }
+  $('lista').innerHTML = itens.map(i => {
+    let meta = `Indicada em ${dataBR(i.criado_em)}`;
+    if (i.etapa === 'cliente_pagou' && i.data_pix_previsto) meta += ` · Pix previsto para ${dataBR(i.data_pix_previsto)}`;
+    if (i.etapa === 'bonus_pago') meta += ` · ${brl(i.valor_bonus)} pago em ${dataBR(i.data_pix_pago)}`;
+    return `<button class="item" data-id="${Number(i.id)}"><b>${esc(i.empresa)}</b>
+      <span class="selo ${classeSelo(i.etapa)}">${esc(ROTULO[i.etapa] || i.etapa)}</span>
+      <span class="meta">${esc(meta)}</span></button>`;
+  }).join('');
+}
+$('filtros').addEventListener('click', e => {
+  const b = e.target.closest('[data-f]'); if (!b) return;
+  filtro = b.dataset.f;
+  document.querySelectorAll('#filtros button').forEach(x => x.classList.toggle('ativo', x === b));
+  desenharLista();
+});
+$('lista').addEventListener('click', e => { const b = e.target.closest('.item'); if (b) abrirDetalhe(b.dataset.id); });
+
+/* ===== DETALHE ===== */
+async function abrirDetalhe(id) {
+  $('m-titulo').textContent = 'Carregando…'; $('m-corpo').innerHTML = '<div class="carregando">Carregando…</div>';
+  $('modal').classList.remove('oculto');
+  const r = await api('ver_indicacao', { id: String(id) });
+  if (!r.ok) { $('m-titulo').textContent = 'Indicação'; $('m-corpo').innerHTML = `<div class="msg erro">${esc(msgErro(r.erro))}</div>`; return; }
+  const i = r.indicacao;
+  $('m-titulo').textContent = i.empresa;
+  let trilha = '';
+  if (i.etapa === 'perdida') {
+    trilha = `<div class="msg aviso">Esta indicação não fechou${i.motivo_perda ? ': ' + esc(i.motivo_perda) : '.'}</div>`;
+  } else {
+    const pos = ETAPAS.indexOf(i.etapa);
+    trilha = `<div class="trilha">${ETAPAS.map((_, k) => `<i class="${k <= pos ? 'feito' : ''}"></i>`).join('')}</div>
+      <div class="trilha-rot"><span>Indicada</span><b style="color:var(--acento)">${esc(ROTULO[i.etapa])}</b><span>Bônus pago</span></div>`;
+  }
+  const linhas = [
+    ['Contato', esc(i.contato_nome)],
+    ['WhatsApp', esc(telBR(i.contato_telefone))],
+    i.contato_email && ['E-mail', esc(i.contato_email)],
+    i.segmento && ['Segmento', esc(i.segmento)],
+    i.cidade && ['Cidade', esc(i.cidade)],
+    i.observacao && ['Observação', esc(i.observacao)],
+    ['Indicada em', esc(dataHoraBR(i.criado_em))],
+    i.data_fechamento && ['Fechada em', esc(dataBR(i.data_fechamento))],
+    i.data_pix_previsto && i.etapa === 'cliente_pagou' && ['Pix previsto', `<b>${esc(dataBR(i.data_pix_previsto))}</b> · ${esc(brl(i.valor_bonus))}`],
+    i.data_pix_pago && ['Pix pago', `${esc(dataBR(i.data_pix_pago))} · ${esc(brl(i.valor_bonus))}`],
+  ].filter(Boolean);
+  const hist = (r.eventos || []).slice().reverse().map(ev =>
+    `<li><time>${esc(dataHoraBR(ev.criado_em))}</time>${esc(ROTULO[ev.etapa_para] || ev.etapa_para)}${ev.nota ? ' · ' + esc(ev.nota) : ''}</li>`).join('');
+  $('m-corpo').innerHTML = trilha +
+    `<dl class="dados">${linhas.map(([a,b]) => `<dt>${a}</dt><dd>${b}</dd>`).join('')}</dl>` +
+    `<div class="hist"><h3>Histórico</h3><ul>${hist}</ul></div>`;
+}
+function fecharModal() { $('modal').classList.add('oculto'); if (modalMudou) { modalMudou = false; carregarQuadro(); } }
+let modalMudou = false;
+$('m-fechar').addEventListener('click', fecharModal);
+$('modal').addEventListener('click', e => { if (e.target.id === 'modal') fecharModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') fecharModal(); });
+
+/* ===== NOVA INDICAÇÃO ===== */
+$('form-nova').addEventListener('submit', async e => {
+  e.preventDefault(); mostrarMsg('msg-nova');
+  const tel = digitos($('n-telefone').value);
+  if (tel.length < 10 || tel.length > 13) { mostrarMsg('msg-nova', ERROS.telefone_invalido); $('n-telefone').focus(); return; }
+  const b = $('b-nova'); ocupado(b, true, 'Enviando…');
+  const r = await api('criar_indicacao', {
+    empresa: $('n-empresa').value.trim(), segmento: $('n-segmento').value.trim(), cidade: $('n-cidade').value.trim(),
+    contato_nome: $('n-contato').value.trim(), contato_telefone: $('n-telefone').value.trim(),
+    contato_email: $('n-email').value.trim(), observacao: $('n-obs').value.trim()
+  });
+  ocupado(b, false);
+  if (!r.ok) { if (!['nao_autorizado','trocar_senha','termos_pendentes'].includes(r.erro)) mostrarMsg('msg-nova', msgErro(r.erro)); return; }
+  $('form-nova').reset();
+  ir('painel');
+  mostrarMsg('msg-painel', 'Indicação enviada! Vou entrar em contato com a empresa e você acompanha cada etapa por aqui.', 'ok');
+  clearTimeout(window._tMsg); window._tMsg = setTimeout(() => mostrarMsg('msg-painel'), 8000);
+});
+
+/* ===== MEUS DADOS ===== */
+function preencherDados() {
+  const u = sessao.usuario || {};
+  mostrarMsg('msg-dados');
+  $('d-nome').value = u.nome || '';
+  $('d-tipo').value = u.pix_tipo || '';
+  $('d-chave').value = u.pix_chave || '';
+  $('d-telefone').value = u.telefone || '';
+  $('d-documento').value = '';
+  $('d-documento').placeholder = u.pix_cadastrado ? 'Já cadastrado. Preencha só se quiser trocar.' : '';
+  $('d-documento').required = !u.pix_cadastrado;
+}
+$('form-dados').addEventListener('submit', async e => {
+  e.preventDefault(); mostrarMsg('msg-dados');
+  const u = sessao.usuario || {};
+  const doc = digitos($('d-documento').value);
+  if (!doc && u.pix_cadastrado) { mostrarMsg('msg-dados', 'Para alterar a chave Pix, informe também o CPF ou CNPJ.', 'erro'); $('d-documento').focus(); return; }
+  if (![11,14].includes(doc.length)) { mostrarMsg('msg-dados', ERROS.documento_invalido, 'erro'); return; }
+  const b = $('b-dados'); ocupado(b, true, 'Salvando…');
+  const r = await api('atualizar_pix', { documento: doc, pix_tipo: $('d-tipo').value, pix_chave: $('d-chave').value.trim(), telefone: $('d-telefone').value.trim() });
+  ocupado(b, false);
+  if (!r.ok) { mostrarMsg('msg-dados', msgErro(r.erro), 'erro'); return; }
+  const me = await chamar(API_AUTH, { acao:'me', token: sessao.token });
+  if (me.ok) { sessao.usuario = me.usuario; gravarSessao(sessao); }
+  preencherDados();
+  mostrarMsg('msg-dados', 'Dados salvos. Os próximos bônus vão para esta chave Pix.', 'ok');
+});
+
+
+/* ===================================================================
+   ADMIN
+   =================================================================== */
+const COLUNAS = ['indicada','em_contato','demonstracao','proposta','fechada','cliente_pagou','bonus_pago','perdida'];
+const ERROS_ADMIN = {
+  sem_permissao:'Esta conta não é de administrador.', etapa_invalida:'Etapa inválida.', ja_paga:'O bônus desta indicação já foi pago; a etapa não muda mais.',
+  mesma_etapa:'A indicação já está nesta etapa.', motivo_obrigatorio:'Escreva o motivo (pelo menos 3 letras) para marcar como não fechada.',
+  precisa_estar_fechada:'Para marcar "Cliente pagou", a indicação precisa estar em "Fechada".', precisa_cliente_pagou:'O Pix só pode ser registrado depois de "Cliente pagou".',
+  conflito_duplicada:'Já existe outra indicação ativa com o mesmo telefone. Encerre a outra antes de reabrir esta.',
+  email_existente:'Já existe um parceiro com esse e-mail.', dados_invalidos:'Confira nome e e-mail.', nao_encontrado:'Parceiro não encontrado.'
+};
+const msgAdmin = e => ERROS_ADMIN[e] || msgErro(e);
+const hojeISO = () => { const d = new Date(); d.setMinutes(d.getMinutes() - d.getTimezoneOffset()); return d.toISOString().slice(0, 10); };
+let todas = [], parceiros = [];
+
+function senhaTemporaria() {
+  const abc = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789';
+  const r = new Uint32Array(10); crypto.getRandomValues(r);
+  return Array.from(r, n => abc[n % abc.length]).join('');
+}
+async function copiar(texto, botao) {
+  try { await navigator.clipboard.writeText(texto); } catch (e) {
+    const t = document.createElement('textarea'); t.value = texto; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); } catch (e2) {} t.remove();
+  }
+  if (botao) { const o = botao.textContent; botao.textContent = 'Copiado!'; setTimeout(() => botao.textContent = o, 1500); }
+}
+const linkPortal = () => location.origin + location.pathname;
+
+async function carregarQuadro() {
+  mostrarMsg('msg-quadro');
+  const [ri, rp] = await Promise.all([api('admin_listar'), api('admin_listar_parceiros')]);
+  if (!ri.ok) { $('quadro').innerHTML = ''; mostrarMsg('msg-quadro', msgAdmin(ri.erro)); return; }
+  todas = ri.indicacoes || [];
+  if (rp.ok) {
+    parceiros = rp.parceiros || [];
+    const sel = $('q-parceiro'), atual = sel.value;
+    sel.innerHTML = '<option value="">Todos os parceiros</option>' +
+      parceiros.map(p => `<option value="${Number(p.id)}">${esc(p.nome)}</option>`).join('');
+    sel.value = atual;
+  }
+  const n = et => todas.filter(i => i.etapa === et);
+  const soma = l => l.reduce((t, i) => t + Number(i.valor_bonus || 0), 0);
+  const aPagar = n('cliente_pagou'), pagos = n('bonus_pago');
+  const hoje = hojeISO();
+  const vencidos = aPagar.filter(i => i.data_pix_previsto && i.data_pix_previsto <= hoje).length;
+  $('a-aberto').textContent = todas.filter(i => ['indicada','em_contato','demonstracao','proposta'].includes(i.etapa)).length;
+  $('a-fechadas').textContent = n('fechada').length;
+  $('a-pagar').textContent = brl(soma(aPagar));
+  $('a-pagar-info').textContent = aPagar.length ? `${aPagar.length} Pix${vencidos ? ` · ${vencidos} para hoje ou atrasado` : ''}` : 'Nada pendente';
+  $('a-pago').textContent = brl(soma(pagos));
+  $('a-pago-info').textContent = pagos.length ? `${pagos.length} Pix pago(s)` : '';
+  desenharQuadro();
+}
+function desenharQuadro() {
+  const q = $('q-busca').value.trim().toLowerCase(), pid = $('q-parceiro').value, perdidas = $('q-perdidas').checked;
+  const hoje = hojeISO();
+  const filtradas = todas.filter(i => (!pid || String(i.parceiro_id) === pid) &&
+    (!q || [i.empresa, i.contato_nome, i.parceiro_nome, i.cidade].some(x => String(x || '').toLowerCase().includes(q))));
+  const cols = COLUNAS.filter(c => c !== 'perdida' || perdidas);
+  $('quadro').innerHTML = cols.map(c => {
+    const itens = filtradas.filter(i => i.etapa === c);
+    if (c === 'cliente_pagou') itens.sort((a, b) => String(a.data_pix_previsto).localeCompare(String(b.data_pix_previsto)));
+    return `<div class="coluna ${c === 'cliente_pagou' ? 'c-pagar' : ''}"><h3>${esc(ROTULO[c])}<span>${itens.length}</span></h3>` +
+      (itens.length ? itens.map(i => {
+        let extra = '';
+        if (c === 'cliente_pagou') {
+          const atrasado = i.data_pix_previsto && i.data_pix_previsto <= hoje;
+          extra = `<div class="pix ${atrasado ? 'atrasado' : ''}">Pix ${esc(brl(i.valor_bonus))} até ${esc(dataBR(i.data_pix_previsto))}${atrasado ? ' ⚠' : ''}</div>`;
+        }
+        if (c === 'bonus_pago') extra = `<small>Pago em ${esc(dataBR(i.data_pix_pago))}</small>`;
+        if (c === 'perdida' && i.motivo_perda) extra = `<small>${esc(i.motivo_perda)}</small>`;
+        return `<button class="cartao-ind" data-id="${Number(i.id)}"><b>${esc(i.empresa)}</b>
+          <small>${esc(i.parceiro_nome || '')} · ${esc(dataBR(i.criado_em))}</small>${extra}</button>`;
+      }).join('') : '<div class="nada">Nenhuma</div>') + '</div>';
+  }).join('');
+}
+['q-busca','q-parceiro','q-perdidas'].forEach(id => $(id).addEventListener('input', desenharQuadro));
+$('quadro').addEventListener('click', e => { const b = e.target.closest('.cartao-ind'); if (b) abrirDetalheAdmin(b.dataset.id); });
+
+async function abrirDetalheAdmin(id) {
+  $('m-titulo').textContent = 'Carregando…'; $('m-corpo').innerHTML = '<div class="carregando">Carregando…</div>';
+  $('modal').classList.remove('oculto');
+  const r = await api('ver_indicacao', { id: String(id) });
+  if (!r.ok) { $('m-titulo').textContent = 'Indicação'; $('m-corpo').innerHTML = `<div class="msg erro">${esc(msgAdmin(r.erro))}</div>`; return; }
+  const i = r.indicacao;
+  const p = parceiros.find(x => Number(x.id) === Number(i.parceiro_id)) || {};
+  $('m-titulo').textContent = i.empresa;
+
+  const linhas = [
+    ['Etapa', `<b>${esc(ROTULO[i.etapa])}</b>${i.motivo_perda ? ' · ' + esc(i.motivo_perda) : ''}`],
+    ['Parceiro', esc(i.parceiro_nome || '') + (p.telefone ? ` · ${esc(telBR(p.telefone))}` : '')],
+    ['Contato', esc(i.contato_nome)],
+    ['WhatsApp', `${esc(telBR(i.contato_telefone))} <a href="https://wa.me/${digitos(i.contato_telefone).length <= 11 ? '55' : ''}${esc(digitos(i.contato_telefone))}" target="_blank" rel="noopener">abrir conversa</a>`],
+    i.contato_email && ['E-mail', esc(i.contato_email)],
+    i.segmento && ['Segmento', esc(i.segmento)],
+    i.cidade && ['Cidade', esc(i.cidade)],
+    i.observacao && ['Observação', esc(i.observacao)],
+    ['Indicada em', esc(dataHoraBR(i.criado_em))],
+    i.data_fechamento && ['Fechada em', esc(dataBR(i.data_fechamento))],
+    i.data_primeiro_pagamento && ['1º pagamento', esc(dataBR(i.data_primeiro_pagamento))],
+    i.data_pix_previsto && ['Pix previsto', esc(dataBR(i.data_pix_previsto))],
+    i.data_pix_pago && ['Pix pago', `${esc(dataBR(i.data_pix_pago))} · ${esc(brl(i.valor_bonus))}${i.comprovante_pix ? ' · ' + esc(i.comprovante_pix) : ''}`],
+  ].filter(Boolean);
+
+  let pix = '';
+  if (i.etapa === 'cliente_pagou') {
+    const tipo = { cpf:'CPF', cnpj:'CNPJ', email:'E-mail', telefone:'Telefone', aleatoria:'Chave aleatória' }[p.pix_tipo] || '';
+    pix = `<div class="caixa-pix"><h3>Pagar ${esc(brl(i.valor_bonus))} a ${esc(i.parceiro_nome || '')} até ${esc(dataBR(i.data_pix_previsto))}</h3>` +
+      (p.pix_chave
+        ? `<div style="font-size:13.5px;color:var(--suave)">Chave Pix (${esc(tipo)}) · titular CPF/CNPJ ${esc(p.documento || '—')}</div>
+           <div class="chave"><span>${esc(p.pix_chave)}</span><button type="button" class="btn-mini" id="b-copiar-pix">Copiar</button></div>`
+        : `<div class="msg aviso" style="margin:6px 0 10px">Este parceiro ainda não cadastrou a chave Pix. Peça para ele preencher em "Meus dados".</div>`) +
+      `<div class="msg erro oculto" id="msg-pix"></div>
+       <div class="grade2">
+         <div class="campo"><label for="x-pix-data">Data do Pix</label><input type="date" id="x-pix-data" value="${hojeISO()}"></div>
+         <div class="campo"><label for="x-pix-comp">ID da transação <span class="opcional">(opcional)</span></label><input id="x-pix-comp" maxlength="300" placeholder="E2E…"></div>
+       </div>
+       <button class="btn btn-p" id="b-pix-pago">Registrar Pix pago</button></div>`;
+  }
+
+  let acoes = '';
+  if (i.etapa !== 'bonus_pago') {
+    const opcoes = ['indicada','em_contato','demonstracao','proposta','fechada','cliente_pagou','perdida']
+      .filter(e => e !== i.etapa && (e !== 'cliente_pagou' || i.etapa === 'fechada'));
+    const sugestao = { indicada:'em_contato', em_contato:'demonstracao', demonstracao:'proposta', proposta:'fechada', fechada:'cliente_pagou', perdida:'em_contato' }[i.etapa];
+    const corrigir = i.etapa === 'cliente_pagou';
+    acoes = `<div class="acoes">${corrigir ? '<details class="corrigir"><summary>Corrigir etapa (só se houve engano)</summary>' : '<h3>Mudar etapa</h3>'}<div class="msg erro oculto" id="msg-etapa"></div>
+      <div class="grade2">
+        <div class="campo"><label for="x-etapa">Nova etapa</label><select id="x-etapa">${opcoes.map(e => `<option value="${e}" ${e === sugestao ? 'selected' : ''}>${esc(ROTULO[e])}</option>`).join('')}</select></div>
+        <div class="campo" id="x-data-campo"><label for="x-data" id="x-data-rot">Data</label><input type="date" id="x-data" value="${hojeISO()}"></div>
+      </div>
+      <div class="campo"><label for="x-nota" id="x-nota-rot">Nota <span class="opcional">(opcional, o parceiro vê no histórico)</span></label><textarea id="x-nota" maxlength="1000" style="min-height:60px"></textarea></div>
+      <button class="btn ${corrigir ? 'btn-s' : 'btn-p'}" id="b-etapa">Salvar etapa</button>${corrigir ? '</details>' : ''}</div>`;
+  }
+
+  const hist = (r.eventos || []).slice().reverse().map(ev =>
+    `<li><time>${esc(dataHoraBR(ev.criado_em))}</time>${esc(ROTULO[ev.etapa_para] || ev.etapa_para)}${ev.nota ? ' · ' + esc(ev.nota) : ''}</li>`).join('');
+  $('m-corpo').innerHTML = pix + `<dl class="dados">${linhas.map(([a, b]) => `<dt>${a}</dt><dd>${b}</dd>`).join('')}</dl>` +
+    acoes + `<div class="hist"><h3>Histórico</h3><ul>${hist}</ul></div>`;
+
+  if ($('b-copiar-pix')) $('b-copiar-pix').onclick = e => copiar(p.pix_chave, e.target);
+  if ($('b-pix-pago')) $('b-pix-pago').onclick = async e => {
+    if (!confirm(`Confirmar Pix de ${brl(i.valor_bonus)} para ${i.parceiro_nome}? Depois disso a indicação fica como "Bônus pago" e não muda mais.`)) return;
+    ocupado(e.target, true, 'Registrando…');
+    const x = await api('marcar_pix_pago', { id: String(i.id), data: $('x-pix-data').value, comprovante: $('x-pix-comp').value.trim() });
+    ocupado(e.target, false);
+    if (!x.ok) { mostrarMsg('msg-pix', msgAdmin(x.erro)); return; }
+    modalMudou = true; abrirDetalheAdmin(i.id);
+  };
+  if ($('x-etapa')) {
+    const ajustar = () => {
+      const et = $('x-etapa').value;
+      const comData = et === 'fechada' || et === 'cliente_pagou';
+      $('x-data-campo').classList.toggle('oculto', !comData);
+      $('x-data-rot').textContent = et === 'fechada' ? 'Data da assinatura' : 'Data do 1º pagamento do cliente';
+      $('x-nota-rot').innerHTML = et === 'perdida' ? 'Motivo (obrigatório, o parceiro vê)' : 'Nota <span class="opcional">(opcional, o parceiro vê no histórico)</span>';
+    };
+    $('x-etapa').onchange = ajustar; ajustar();
+    $('b-etapa').onclick = async e => {
+      const et = $('x-etapa').value;
+      ocupado(e.target, true, 'Salvando…');
+      const x = await api('mudar_etapa', { id: String(i.id), etapa: et, nota: $('x-nota').value.trim(),
+        data: (et === 'fechada' || et === 'cliente_pagou') ? $('x-data').value : '' });
+      ocupado(e.target, false);
+      if (!x.ok) { mostrarMsg('msg-etapa', msgAdmin(x.erro)); return; }
+      modalMudou = true; abrirDetalheAdmin(i.id);
+    };
+  }
+}
+
+/* ----- Parceiros ----- */
+async function carregarParceiros() {
+  mostrarMsg('msg-parceiros');
+  const r = await api('admin_listar_parceiros');
+  if (!r.ok) { $('lista-parceiros').innerHTML = ''; mostrarMsg('msg-parceiros', msgAdmin(r.erro)); return; }
+  parceiros = r.parceiros || [];
+  if (!parceiros.length) {
+    $('lista-parceiros').innerHTML = `<div class="cartao vazio"><b>Nenhum parceiro ainda</b>Clique em "Convidar parceiro" para criar o primeiro acesso.</div>`;
+    return;
+  }
+  $('lista-parceiros').innerHTML = `<table class="tabela"><thead><tr>
+      <th>Parceiro</th><th>Indicações</th><th>Pix a pagar</th><th>Situação</th><th></th></tr></thead><tbody>` +
+    parceiros.map(p => {
+      const sit = !p.ativo ? 'Desativado'
+        : !p.ultimo_login ? 'Ainda não entrou'
+        : !p.termos_aceitos_em ? 'Não aceitou os termos'
+        : !p.pix_chave ? 'Sem chave Pix' : 'Ok';
+      return `<tr class="${p.ativo ? '' : 'inativo'}">
+        <td><b>${esc(p.nome)}</b><small>${esc(p.email)}${p.telefone ? ' · ' + esc(telBR(p.telefone)) : ''}</small></td>
+        <td>${Number(p.indicacoes)}<small>${Number(p.fechadas)} fechada(s)</small></td>
+        <td>${esc(brl(p.a_pagar))}</td>
+        <td>${esc(sit)}${p.ultimo_login ? `<small>Último acesso ${esc(dataHoraBR(p.ultimo_login))}</small>` : ''}</td>
+        <td style="white-space:nowrap"><button class="btn-mini" data-senha="${Number(p.id)}">Nova senha</button>
+          <button class="btn-mini" data-ativo="${Number(p.id)}" data-valor="${p.ativo ? 'false' : 'true'}">${p.ativo ? 'Desativar' : 'Reativar'}</button></td></tr>`;
+    }).join('') + '</tbody></table>';
+}
+function mensagemAcesso(nome, email, senha, nova) {
+  return `Olá, ${String(nome).split(' ')[0]}! ${nova ? 'Gerei uma nova senha para você' : 'Seu acesso ao Portal de Parceiros da MH está pronto'}.\n\n` +
+    `Link: ${linkPortal()}\nE-mail: ${email}\nSenha temporária: ${senha}\n\n` +
+    `No primeiro acesso o portal pede para você criar a sua senha${nova ? '' : ' e aceitar os termos do programa'}. Qualquer dúvida, é só me chamar.`;
+}
+function mostrarCredenciais(alvo, nome, email, senha, nova) {
+  const texto = mensagemAcesso(nome, email, senha, nova);
+  alvo.innerHTML = `<div class="credenciais"><b>${nova ? 'Nova senha gerada' : 'Acesso criado'} para ${esc(nome)}</b>
+    <div style="font-size:13.5px;color:var(--suave)">Envie esta mensagem ao parceiro. A senha não aparece de novo depois que você sair desta tela.</div>
+    <pre>${esc(texto)}</pre><button class="btn btn-s" type="button" id="b-copiar-msg">Copiar mensagem</button></div>`;
+  $('b-copiar-msg').onclick = e => copiar(texto, e.target);
+}
+$('b-convidar').addEventListener('click', () => {
+  $('convite').classList.remove('oculto'); $('form-convite').reset(); mostrarMsg('msg-convite');
+  const c = $('convite').querySelector('.credenciais'); if (c) c.parentElement.remove();
+  $('c-nome').focus();
+});
+$('b-convite-cancelar').addEventListener('click', () => $('convite').classList.add('oculto'));
+$('form-convite').addEventListener('submit', async e => {
+  e.preventDefault(); mostrarMsg('msg-convite');
+  const nome = $('c-nome').value.trim(), email = $('c-email').value.trim().toLowerCase(), senha = senhaTemporaria();
+  const b = $('b-criar'); ocupado(b, true, 'Criando…');
+  const r = await api('admin_criar_parceiro', { nome, email, telefone: $('c-telefone').value.trim(), senha_temp: senha });
+  ocupado(b, false);
+  if (!r.ok) { mostrarMsg('msg-convite', msgAdmin(r.erro)); return; }
+  $('form-convite').reset();
+  const div = document.createElement('div'); $('form-convite').after(div);
+  mostrarCredenciais(div, nome, email, senha, false);
+  carregarParceiros();
+});
+$('lista-parceiros').addEventListener('click', async e => {
+  const bs = e.target.closest('[data-senha]'), ba = e.target.closest('[data-ativo]');
+  if (bs) {
+    const p = parceiros.find(x => Number(x.id) === Number(bs.dataset.senha));
+    if (!confirm(`Gerar uma nova senha temporária para ${p.nome}? A senha atual deixa de funcionar e as sessões abertas são encerradas.`)) return;
+    const senha = senhaTemporaria();
+    const r = await api('admin_redefinir_senha', { parceiro_id: String(p.id), senha_temp: senha });
+    if (!r.ok) { mostrarMsg('msg-parceiros', msgAdmin(r.erro)); return; }
+    $('convite').classList.remove('oculto'); $('form-convite').classList.add('oculto');
+    const velho = $('convite').querySelector('.credenciais'); if (velho) velho.parentElement.remove();
+    const div = document.createElement('div'); $('form-convite').after(div);
+    mostrarCredenciais(div, p.nome, p.email, senha, true);
+    $('convite').querySelector('h2').textContent = 'Nova senha';
+    window.scrollTo(0, 0);
+  }
+  if (ba) {
+    const p = parceiros.find(x => Number(x.id) === Number(ba.dataset.ativo));
+    const ativar = ba.dataset.valor === 'true';
+    if (!ativar && !confirm(`Desativar ${p.nome}? Ele não consegue mais entrar. As indicações e bônus continuam registrados.`)) return;
+    const r = await api('admin_ativar_parceiro', { parceiro_id: String(p.id), ativo: ativar });
+    if (!r.ok) { mostrarMsg('msg-parceiros', msgAdmin(r.erro)); return; }
+    carregarParceiros();
+  }
+});
+$('b-convidar').addEventListener('click', () => { $('form-convite').classList.remove('oculto'); $('convite').querySelector('h2').textContent = 'Convidar parceiro'; });
+
+/* ===== INÍCIO ===== */
+decidirTela();
+</script>
+</body>
+</html>
