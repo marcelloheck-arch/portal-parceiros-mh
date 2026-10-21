@@ -812,7 +812,8 @@ function preencherDados() {
   const zap = WHATSAPP_MH ? `<p style="margin-top:10px"><a class="btn btn-p" href="https://wa.me/${WHATSAPP_MH}?text=${encodeURIComponent('Olá, Marcelo! Quero conversar sobre o meu plano de participação no programa de parceiros.')}" target="_blank" rel="noopener">Agendar uma conversa</a></p>` : '';
   $('d-plano').innerHTML = tipo === 'a_definir'
     ? `<h3>Seu plano de participação: a definir</h3><div style="font-size:14px">Escolha a forma que combina mais com você: valor fixo por contrato fechado, percentual da mensalidade enquanto o cliente indicado estiver ativo, ou os dois. Agende uma conversa com o Marcelo para definir.</div>${zap}`
-    : `<h3>Seu plano de participação: ${esc(PLANOS[tipo] || tipo)}</h3><div style="font-size:14px">${esc(u.plano_descricao || '')}</div>`;
+    : `<h3>Seu plano de participação: ${esc(PLANOS[tipo] || tipo)}</h3><div style="font-size:14px">${esc(u.plano_descricao || '')}</div>` +
+      (WHATSAPP_MH ? `<p style="margin-top:10px"><a class="btn btn-s" href="https://wa.me/${WHATSAPP_MH}?text=${encodeURIComponent('Olá, Marcelo! Tenho uma dúvida sobre o meu plano de participação no programa de parceiros.')}" target="_blank" rel="noopener">Falar com o Marcelo</a></p>` : '');
 }
 $('form-dados').addEventListener('submit', async e => {
   e.preventDefault(); mostrarMsg('msg-dados');
